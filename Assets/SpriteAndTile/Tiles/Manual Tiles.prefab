@@ -41,7 +41,11 @@ Tilemap:
   m_GameObject: {fileID: 2186054814480849483}
   m_Enabled: 1
   m_Tiles:
+<<<<<<< Updated upstream
   - first: {x: 1, y: -12, z: 0}
+=======
+  - first: {x: 1, y: -14, z: 0}
+>>>>>>> Stashed changes
     second:
       serializedVersion: 2
       m_TileIndex: 41
@@ -51,6 +55,19 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+<<<<<<< Updated upstream
+=======
+  - first: {x: 1, y: -13, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 36
+      m_TileSpriteIndex: 36
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+>>>>>>> Stashed changes
   - first: {x: 3, y: -12, z: 0}
     second:
       serializedVersion: 2
@@ -131,6 +148,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+<<<<<<< Updated upstream
   - first: {x: 1, y: -11, z: 0}
     second:
       serializedVersion: 2
@@ -141,6 +159,8 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+=======
+>>>>>>> Stashed changes
   - first: {x: 3, y: -11, z: 0}
     second:
       serializedVersion: 2
@@ -771,8 +791,13 @@ Tilemap:
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+<<<<<<< Updated upstream
   m_Origin: {x: -3, y: -12, z: 0}
   m_Size: {x: 10, y: 13, z: 1}
+=======
+  m_Origin: {x: -3, y: -14, z: 0}
+  m_Size: {x: 10, y: 15, z: 1}
+>>>>>>> Stashed changes
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -884,7 +909,11 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+<<<<<<< Updated upstream
 --- !u!114 &7307366859077387520
+=======
+--- !u!114 &2642670686519528458
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
