@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private PlayerInput playerInput;
     private Rigidbody2D rb;
     private Vector3 currentPosition;
+    [SerializeField] private AudioSource footstep;
 
     int numCurrentJumps;
 
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
         anim = GetComponent<Animator>();
+        footstep = GetComponent<AudioSource>();
     }
 
     private void OnEnable() => playerInput.Enable();
@@ -108,5 +110,10 @@ public class Player : MonoBehaviour
         {
             transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
         }
+    }
+
+    private void Footstep()
+    {
+        footstep.Play();
     }
 }
