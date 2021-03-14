@@ -6169,7 +6169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1430324309305413138, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
       propertyPath: numExtraJumpTotal
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}

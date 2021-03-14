@@ -42,13 +42,6 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        bool isTouchingGround = coll.IsTouchingLayers(LayerMask.GetMask("Ground"));
-
-        if (isTouchingGround)
-        {
-            numCurrentJumps = numExtraJumpTotal;
-            
-        }
         if (numCurrentJumps > 0)
         {
             rb.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
@@ -70,8 +63,25 @@ public class Player : MonoBehaviour
     private void Update()
     {
         movementInput = playerInput.PlayerMain.Move.ReadValue<float>();
+
+        GroundCheck();
         Flip(movementInput);
         Move();
+    }
+
+    private void GroundCheck()
+    {
+        bool isTouchingGround = coll.IsTouchingLayers(LayerMask.GetMask("Ground"));
+
+        if (isTouchingGround)
+        {
+            numCurrentJumps = numExtraJumpTotal;
+            anim.SetBool("Jumping", false);
+        }
+        else
+        {
+            anim.SetBool("Jumping", true);
+        }
     }
 
     private void Move()
