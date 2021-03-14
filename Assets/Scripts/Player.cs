@@ -65,6 +65,14 @@ public class Player : MonoBehaviour
         currentPosition = transform.position;
         currentPosition.x += movementInput * speed * Time.deltaTime;
         transform.position = currentPosition;
+
+        if(Mathf.Abs(movementInput) < Mathf.Epsilon) 
+        {
+            anim.SetBool("Running", false);
+        } else
+        {
+            anim.SetBool("Running", true);
+        }
     }
 
     private void Flip(float direction)
