@@ -5703,7 +5703,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.15
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -6166,6 +6166,10 @@ PrefabInstance:
     - target: {fileID: 1430324309305413138, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
       propertyPath: ground.m_Bits
       value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430324309305413138, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
+      propertyPath: numExtraJumpTotal
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}

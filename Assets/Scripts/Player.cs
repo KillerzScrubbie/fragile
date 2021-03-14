@@ -9,12 +9,17 @@ public class Player : MonoBehaviour
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpSpeed = 5f;
     [SerializeField] private LayerMask ground;
+    [SerializeField] private int numExtraJumpTotal = 1;
 
     private Collider2D coll;
     private PlayerInput playerInput;
     private Rigidbody2D rb;
-    float movementInput;
     private Vector3 currentPosition;
+
+    int numCurrentJumps;
+
+    float movementInput;
+
     Animator anim;
 
     private void Awake()
@@ -31,6 +36,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        numCurrentJumps = numExtraJumpTotal;
         playerInput.PlayerMain.Jump.performed += _ => Jump();
     }
 
@@ -40,7 +46,13 @@ public class Player : MonoBehaviour
 
         if (isTouchingGround)
         {
+            numCurrentJumps = numExtraJumpTotal;
+            
+        }
+        if (numCurrentJumps > 0)
+        {
             rb.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
+            numCurrentJumps--;
         }
     }
 
