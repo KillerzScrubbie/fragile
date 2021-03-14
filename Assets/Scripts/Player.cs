@@ -36,13 +36,15 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if (isGrounded())
+        bool isTouchingGround = coll.IsTouchingLayers(LayerMask.GetMask("Ground"));
+
+        if (isTouchingGround)
         {
             rb.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
         }
     }
 
-    private bool isGrounded()
+    /*private bool isGrounded()
     {
         Vector2 topLeftPoint = transform.position;
         topLeftPoint.x -= coll.bounds.extents.x;
@@ -51,7 +53,7 @@ public class Player : MonoBehaviour
         bottomRightPoint.x += coll.bounds.extents.x;
         bottomRightPoint.y -= coll.bounds.extents.y;
         return Physics2D.OverlapArea(topLeftPoint, bottomRightPoint, ground);
-    }
+    }*/
 
     private void Update()
     {
