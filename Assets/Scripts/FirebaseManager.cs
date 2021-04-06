@@ -163,8 +163,8 @@ public class FirebaseManager : MonoBehaviour
             usernameField.text = User.DisplayName;
             UIManager.instance.UserDataScreen(); // Change to user data UI
             confirmLoginText.text = "";
-            ClearLoginFeilds();
-            ClearRegisterFeilds();*/
+            ClearLoginFields();
+            ClearRegisterFields();*/
         }
     }
 
