@@ -64,12 +64,12 @@ public class FirebaseManager : MonoBehaviour
         auth = FirebaseAuth.DefaultInstance;
         DBreference = FirebaseDatabase.DefaultInstance.RootReference;
     }
-    public void ClearLoginFeilds()
+    public void ClearLoginFields()
     {
         emailLoginField.text = "";
         passwordLoginField.text = "";
     }
-    public void ClearRegisterFeilds()
+    public void ClearRegisterFields()
     {
         usernameRegisterField.text = "";
         emailRegisterField.text = "";
@@ -94,8 +94,8 @@ public class FirebaseManager : MonoBehaviour
     {
         auth.SignOut();
         UIManager.instance.LoginScreen();
-        ClearRegisterFeilds();
-        ClearLoginFeilds();
+        ClearRegisterFields();
+        ClearLoginFields();
     }
     //Function for the save button
     /*public void SaveDataButton()
@@ -156,7 +156,7 @@ public class FirebaseManager : MonoBehaviour
             Debug.LogFormat("User signed in successfully: {0} ({1})", User.DisplayName, User.Email);
             warningLoginText.text = "";
             confirmLoginText.text = "Logged In";
-            StartCoroutine(LoadUserData());
+            /*StartCoroutine(LoadUserData());
 
             yield return new WaitForSeconds(2);
 
@@ -164,7 +164,7 @@ public class FirebaseManager : MonoBehaviour
             UIManager.instance.UserDataScreen(); // Change to user data UI
             confirmLoginText.text = "";
             ClearLoginFeilds();
-            ClearRegisterFeilds();
+            ClearRegisterFeilds();*/
         }
     }
 
@@ -240,8 +240,8 @@ public class FirebaseManager : MonoBehaviour
                         //Now return to login screen
                         UIManager.instance.LoginScreen();
                         warningRegisterText.text = "";
-                        ClearRegisterFeilds();
-                        ClearLoginFeilds();
+                        ClearRegisterFields();
+                        ClearLoginFields();
                     }
                 }
             }
