@@ -391,9 +391,9 @@ public class FirebaseManager : MonoBehaviour
             foreach (DataSnapshot childSnapshot in snapshot.Children.Reverse<DataSnapshot>())
             {
                 string username = childSnapshot.Child("username").Value.ToString();
-                int kills = int.Parse(childSnapshot.Child("kills").Value.ToString());
+                /*int kills = int.Parse(childSnapshot.Child("kills").Value.ToString());
                 int deaths = int.Parse(childSnapshot.Child("deaths").Value.ToString());
-                int xp = int.Parse(childSnapshot.Child("xp").Value.ToString());
+                int xp = int.Parse(childSnapshot.Child("xp").Value.ToString());*/
             }
                 //Instantiate new scoreboard elements
                 /*GameObject scoreboardElement = Instantiate(scoreElement, scoreboardContent);

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "401160869568",
+    "firebase_url": "https://fragile-24ebc-default-rtdb.firebaseio.com",
+    "project_id": "fragile-24ebc",
+    "storage_bucket": "fragile-24ebc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401160869568:android:2f7331c2b8ff6429dbff25",
+        "android_client_info": {
+          "package_name": "com.KillerzScrubbie.fragile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401160869568-513viq3nboo8q67mgtp8ctj4r1imkl1k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyl7p7Qt7VmD4aqF2TLX-CnT2h2a2oIMw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401160869568-513viq3nboo8q67mgtp8ctj4r1imkl1k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
