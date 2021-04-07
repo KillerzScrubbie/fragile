@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources tools:keep="@string/firebase_database_url,@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id" xmlns:tools="http://schemas.android.com/tools">
+  <string name="firebase_database_url" translatable="false">https://fragile-24ebc-default-rtdb.firebaseio.com</string>
+  <string name="gcm_defaultSenderId" translatable="false">401160869568</string>
+  <string name="google_storage_bucket" translatable="false">fragile-24ebc.appspot.com</string>
+  <string name="project_id" translatable="false">fragile-24ebc</string>
+  <string name="google_api_key" translatable="false">AIzaSyCyl7p7Qt7VmD4aqF2TLX-CnT2h2a2oIMw</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCyl7p7Qt7VmD4aqF2TLX-CnT2h2a2oIMw</string>
+  <string name="google_app_id" translatable="false">1:401160869568:android:2f7331c2b8ff6429dbff25</string>
+  <string name="default_web_client_id" translatable="false">401160869568-513viq3nboo8q67mgtp8ctj4r1imkl1k.apps.googleusercontent.com</string>
+</resources>

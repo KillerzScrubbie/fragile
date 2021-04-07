@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject loginUI;
     [SerializeField] private GameObject registerUI;
+    [SerializeField] private GameObject menuUI;
 
     private void Awake()
     {
@@ -26,6 +27,7 @@ public class UIManager : MonoBehaviour
     {
         loginUI.SetActive(false);
         registerUI.SetActive(false);
+        menuUI.SetActive(false);
     }
 
     public void LoginScreen()
@@ -38,5 +40,11 @@ public class UIManager : MonoBehaviour
     {
         ClearScreen();
         registerUI.SetActive(true);
+    }
+
+    public void MenuScreen()
+    {
+        ClearScreen();
+        menuUI.SetActive(true);
     }
 }
