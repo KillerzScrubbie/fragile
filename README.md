@@ -19,6 +19,7 @@ Focus mainly on finding assets, sounds, and doing simple coding like animations 
 - Implemented a script from MIT to help with different mobile resolutions. (WIP as the aspect ratio is not the same across devices)
 - *NEW => Added Spikes*
 - *NEW => Added a basic game loop once the player has died*
+- *NEW => Added login and Register*
 
 **What we will do within this term**
 - Reimplement the joystick for movement, if possible.
