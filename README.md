@@ -17,6 +17,8 @@ Focus mainly on finding assets, sounds, and doing simple coding like animations 
 - Added main menu.
 - Tested on 2 iPhone devices at different resolution.
 - Implemented a script from MIT to help with different mobile resolutions. (WIP as the aspect ratio is not the same across devices)
+- *NEW => Added Spikes*
+- *NEW => Added a basic game loop once the player has died*
 
 **What we will do within this term**
 - Reimplement the joystick for movement, if possible.
@@ -24,7 +26,13 @@ Focus mainly on finding assets, sounds, and doing simple coding like animations 
 - Fix the goofy moving mechanics to use Rigidbody2D.
 - Implement better wall jumping and double jumping mechanics.
 - Implement dashing, climbing ladders, and bouncing off from a projectile.
-- Add hazards like Spike, and flood.
-- Add game loop once the player died.
 - Add Pause button and return to main menu while in game.
 - Create a demo level to play.
+- *NEW => Tidyup UIs*
+- *NEW => Add some transitions between scenes*
+- *NEW => Add some particle effects for when the player die or the player jump*
+- *NEW => Add time-based hazards like flood.*
+
+Log #1 - 7/4/2021
+- Firebase Login and Register System is now implemented except the UI
+- Added spike as a prefab which has a simple reset level function if triggered
