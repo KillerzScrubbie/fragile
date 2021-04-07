@@ -8,6 +8,8 @@ using System.Linq;
 
 public class FirebaseManager : MonoBehaviour
 {
+    [SerializeField] private UIManager uiManager = null;
+
     //Firebase variables
     [Header("Firebase")]
     public DependencyStatus dependencyStatus;
@@ -156,6 +158,11 @@ public class FirebaseManager : MonoBehaviour
             Debug.LogFormat("User signed in successfully: {0} ({1})", User.DisplayName, User.Email);
             warningLoginText.text = "";
             confirmLoginText.text = "Logged In";
+
+            yield return new WaitForSeconds(2);
+
+            uiManager.MenuScreen();
+
             /*StartCoroutine(LoadUserData());
 
             yield return new WaitForSeconds(2);
