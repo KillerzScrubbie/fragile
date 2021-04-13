@@ -41,3 +41,5 @@ Log #2 - 13/4/2021
 - Implemented cinemachine to move with the player
 - Fixed goofy movement to use RigidBody2D
 - Fixed double jump
+- Added additional functionality when tap and holding jump
+- Fixed falling and jumping animation
