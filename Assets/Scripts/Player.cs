@@ -11,11 +11,13 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private int numExtraJumpTotal = 1;
     [SerializeField] private AudioSource footstep;
+    [SerializeField] private float jumpTime = 0.35f;
 
+    private float jumpTimeCounter;
     private BoxCollider2D coll;
     private PlayerInput playerInput;
     private Rigidbody2D rb;
-    private Vector3 currentPosition;
+    private bool isJumping = false;
 
     private int numCurrentJumps;
 
@@ -39,17 +41,9 @@ public class Player : MonoBehaviour
     private void Start()
     {
         numCurrentJumps = numExtraJumpTotal;
-        playerInput.PlayerMain.Jump.performed += _ => Jump();
-    }
-
-    private void Jump()
-    {
-        if (numCurrentJumps > 0)
-        {
-            // rb.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
-            rb.velocity = Vector2.up * jumpVelocity;
-            numCurrentJumps--;
-        }
+        // playerInput.PlayerMain.Jump.performed += _ => Jump();
+        playerInput.PlayerMain.Jump.started += _ => HoldJumpButton();
+        playerInput.PlayerMain.Jump.canceled += _ => ReleaseJumpButton();
     }
 
     private void Update()
@@ -57,29 +51,67 @@ public class Player : MonoBehaviour
         movementInput = playerInput.PlayerMain.Move.ReadValue<float>();
 
         Flip(movementInput);
-        Move();
-    }
+        Jump();
 
-    private void GroundCheck()
-    {
-        // bool isTouchingGround = coll.IsTouchingLayers(LayerMask.GetMask("Ground"));
+        /*if (playerInput.PlayerMain.Jump)
+        {
+            Debug.Log("Hold");
+        }*/
 
-        if (IsGrounded())
-        {
-            numCurrentJumps = numExtraJumpTotal;
-            anim.SetBool("Jumping", false);
-        }
-        else
-        {
-            anim.SetBool("Jumping", true);
-        }
+        anim.SetFloat("Air", rb.velocity.y);
     }
 
     private void FixedUpdate()
     {
         // Method to mess with the Physics engine, avoid doing Physics in Update method.
-
+        Move();
         GroundCheck();
+    }
+
+    private void GroundCheck()
+    {
+        if (IsGrounded())
+        {
+            numCurrentJumps = numExtraJumpTotal;
+            anim.SetBool("InAir", false);
+        }
+        else
+        {
+            anim.SetBool("InAir", true);
+        }
+    }
+
+    private void Jump()
+    {
+        if (isJumping) // If the player is holding jump button
+        {
+            if (jumpTimeCounter > 0)
+            {
+                rb.velocity = Vector2.up * jumpVelocity;
+                jumpTimeCounter -= Time.deltaTime;
+            } else
+            {
+                isJumping = false;
+            }
+        }
+    }
+
+    private void HoldJumpButton()
+    {
+        if (numCurrentJumps > 0)
+        {
+            isJumping = true;
+            jumpTimeCounter = jumpTime; // Add jump time counter for holding
+            //rb.velocity = Vector2.up * jumpVelocity;
+            numCurrentJumps--;
+        }
+        Debug.Log("HOld");
+    }
+
+    private void ReleaseJumpButton()
+    {
+        isJumping = false;
+        Debug.Log("RELEASE");
     }
 
     private bool IsGrounded()
@@ -90,9 +122,6 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        /*currentPosition = transform.position;
-        currentPosition.x += movementInput * speed * Time.deltaTime;
-        transform.position = currentPosition;*/
         rb.velocity = new Vector2(movementInput * speed, rb.velocity.y);
 
         if(Mathf.Abs(movementInput) < Mathf.Epsilon) 
@@ -108,10 +137,12 @@ public class Player : MonoBehaviour
     {
         if (direction < 0f)
         {
-            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+            transform.eulerAngles = new Vector3(0, 180, 0);
+            //transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
         } else if (direction > 0f)
         {
-            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+            transform.eulerAngles = new Vector3(0, 0, 0);
+            //transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
         }
     }
 

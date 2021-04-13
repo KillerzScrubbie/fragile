@@ -167,12 +167,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpVelocity: 6
+  jumpVelocity: 3
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   numExtraJumpTotal: 1
   footstep: {fileID: 255022578}
+  jumpTime: 0.5
 --- !u!82 &255022578
 AudioSource:
   m_ObjectHideFlags: 0
