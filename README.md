@@ -21,7 +21,6 @@ Focus mainly on finding assets, sounds, and doing simple coding like animations 
 - Added a basic game loop once the player has died
 - Added login and Register
 - *NEW => Implemented Cinemachine with smooth camera tracking*
-- *NEW => *
 
 **What we will do within this term**
 - Reimplement the joystick for movement, if possible.
