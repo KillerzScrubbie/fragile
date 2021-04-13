@@ -256,142 +256,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 156294036}
   m_CullTransparentMesh: 1
---- !u!1 &255022570 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 162314654839063787, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
-  m_PrefabInstance: {fileID: 162314654590603521}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &255022571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 255022570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 27e9bb5771b44c041b6d36c56dcbab9a, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: PlayerMain
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!4 &255022572 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 162314654839063789, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
   m_PrefabInstance: {fileID: 162314654590603521}
   m_PrefabAsset: {fileID: 0}
---- !u!82 &255022578
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 255022570}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 924cfea2b52b4c844bc9f0f648a520f2, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 0.1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &451417169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1961,20 +1830,22 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 571902200}
     m_ColliderPaths:
-    - - X: -50000100
-        Y: 30000041
-      - X: -50000100
-        Y: 19999959
-      - X: -50000041
-        Y: 19999900
-      - X: -40000100
-        Y: 19999900
-      - X: -40000100
-        Y: -10000041
-      - X: -40000041
-        Y: -10000100
+    - - X: 80000000
+        Y: 20000000
+      - X: 0
+        Y: 20000000
+      - X: 0
+        Y: -10000000
+      - X: -20000000
+        Y: -10000000
+      - X: -20000000
+        Y: 40000000
+      - X: -50000000
+        Y: 40000000
+      - X: -50000000
+        Y: 20000000
       - X: -40000000
-        Y: -10000100
+        Y: 20000000
       - X: -40000000
         Y: -20000000
       - X: -120000000
@@ -1991,26 +1862,6 @@ CompositeCollider2D:
         Y: -10000000
       - X: 80000000
         Y: -10000000
-      - X: 80000000
-        Y: 20000000
-      - X: 0
-        Y: 20000000
-      - X: 0
-        Y: -10000000
-      - X: -19999900
-        Y: -10000000
-      - X: -19999900
-        Y: 40000041
-      - X: -19999959
-        Y: 40000100
-      - X: -50000041
-        Y: 40000100
-      - X: -50000100
-        Y: 40000041
-      - X: -50000100
-        Y: 30000100
-      - X: -50000041
-        Y: 30000100
   m_CompositePaths:
     m_Paths:
     - - {x: 14.999971, y: -4}
@@ -2021,11 +1872,11 @@ CompositeCollider2D:
       - {x: 7.9999704, y: 2}
       - {x: 0, y: 1.9999708}
       - {x: -0.0000294, y: -1}
-      - {x: -1.99999, y: -0.9999706}
-      - {x: -2.0000253, y: 4.00001}
-      - {x: -5.00001, y: 3.9999747}
-      - {x: -4.9999747, y: 1.99999}
-      - {x: -4.00001, y: 1.9999607}
+      - {x: -2, y: -0.9999706}
+      - {x: -2.0000293, y: 4}
+      - {x: -5, y: 3.999971}
+      - {x: -4.999971, y: 2}
+      - {x: -4, y: 1.9999707}
       - {x: -4.0000296, y: -2}
       - {x: -12, y: -2.0000293}
       - {x: -11.99997, y: -4}
@@ -6412,6 +6263,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: spikes
       objectReference: {fileID: 0}
+    - target: {fileID: 3909318414838631037, guid: 70f06c47c33952e49ba6bc3b5fd5711a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70f06c47c33952e49ba6bc3b5fd5711a, type: 3}
 --- !u!1001 &162314654590603521
@@ -6424,6 +6279,10 @@ PrefabInstance:
     - target: {fileID: 162314654839063787, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 162314654839063787, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 162314654839063789, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
       propertyPath: m_RootOrder
@@ -6469,26 +6328,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 162314654839063790, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430324309305413138, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
-      propertyPath: speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430324309305413138, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
-      propertyPath: jumpSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430324309305413138, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
-      propertyPath: ground.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430324309305413138, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
-      propertyPath: numExtraJumpTotal
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
 --- !u!1001 &6564688124959483095
@@ -6501,6 +6340,10 @@ PrefabInstance:
     - target: {fileID: 676822445775589763, guid: 54a347f8a9c65e044bf26ff111985138, type: 3}
       propertyPath: m_Name
       value: Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 676822445775589763, guid: 54a347f8a9c65e044bf26ff111985138, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6564688125001885202, guid: 54a347f8a9c65e044bf26ff111985138, type: 3}
       propertyPath: m_Follow

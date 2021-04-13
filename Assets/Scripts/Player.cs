@@ -7,17 +7,17 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
-    [SerializeField] private float jumpSpeed = 5f;
-    [SerializeField] private LayerMask ground;
+    [SerializeField] private float jumpVelocity = 5f;
+    [SerializeField] private LayerMask groundLayer;
     [SerializeField] private int numExtraJumpTotal = 1;
+    [SerializeField] private AudioSource footstep;
 
-    private Collider2D coll;
+    private BoxCollider2D coll;
     private PlayerInput playerInput;
     private Rigidbody2D rb;
     private Vector3 currentPosition;
-    [SerializeField] private AudioSource footstep;
 
-    int numCurrentJumps;
+    private int numCurrentJumps;
 
     float movementInput;
 
@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     {
         playerInput = new PlayerInput();
         rb = GetComponent<Rigidbody2D>();
-        coll = GetComponent<Collider2D>();
+        coll = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
         footstep = GetComponent<AudioSource>();
     }
@@ -46,36 +46,25 @@ public class Player : MonoBehaviour
     {
         if (numCurrentJumps > 0)
         {
-            rb.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
+            // rb.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
+            rb.velocity = Vector2.up * jumpVelocity;
             numCurrentJumps--;
         }
     }
-
-    /*private bool isGrounded()
-    {
-        Vector2 topLeftPoint = transform.position;
-        topLeftPoint.x -= coll.bounds.extents.x;
-        topLeftPoint.y += coll.bounds.extents.y;
-        Vector2 bottomRightPoint = transform.position;
-        bottomRightPoint.x += coll.bounds.extents.x;
-        bottomRightPoint.y -= coll.bounds.extents.y;
-        return Physics2D.OverlapArea(topLeftPoint, bottomRightPoint, ground);
-    }*/
 
     private void Update()
     {
         movementInput = playerInput.PlayerMain.Move.ReadValue<float>();
 
-        GroundCheck();
         Flip(movementInput);
         Move();
     }
 
     private void GroundCheck()
     {
-        bool isTouchingGround = coll.IsTouchingLayers(LayerMask.GetMask("Ground"));
+        // bool isTouchingGround = coll.IsTouchingLayers(LayerMask.GetMask("Ground"));
 
-        if (isTouchingGround)
+        if (IsGrounded())
         {
             numCurrentJumps = numExtraJumpTotal;
             anim.SetBool("Jumping", false);
@@ -86,11 +75,25 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        // Method to mess with the Physics engine, avoid doing Physics in Update method.
+
+        GroundCheck();
+    }
+
+    private bool IsGrounded()
+    {
+        RaycastHit2D raycastHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, groundLayer);
+        return raycastHit.collider != null;
+    }
+
     private void Move()
     {
-        currentPosition = transform.position;
+        /*currentPosition = transform.position;
         currentPosition.x += movementInput * speed * Time.deltaTime;
-        transform.position = currentPosition;
+        transform.position = currentPosition;*/
+        rb.velocity = new Vector2(movementInput * speed, rb.velocity.y);
 
         if(Mathf.Abs(movementInput) < Mathf.Epsilon) 
         {
