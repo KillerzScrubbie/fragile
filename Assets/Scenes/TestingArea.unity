@@ -6304,6 +6304,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1430324309305413138, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430324309305413138, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
+      propertyPath: xWallForce
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430324309305413138, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
+      propertyPath: yWallForce
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430324309305413138, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
+      propertyPath: wallJumpTime
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430324309305413138, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
+      propertyPath: timeDisabledAfterWallJump
+      value: 0.15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
 --- !u!1001 &6564688124959483095

@@ -22,9 +22,13 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform frontCheck = null;
     [SerializeField] private float wallSlidingSpeed = 2f;
     [SerializeField] private float checkRadius = 0.1f;
+    [SerializeField] private float xWallForce;
+    [SerializeField] private float yWallForce;
+    [SerializeField] private float wallJumpTime; // Time the x and y wall force is applied
+    [SerializeField] private float timeDisabledAfterWallJump = 0.1f;
 
     private float jumpTimeCounter;
-    private float xWallForce;
+    
     // private BoxCollider2D coll;
     private PlayerInput playerInput;
     private Rigidbody2D rb;
@@ -36,6 +40,7 @@ public class Player : MonoBehaviour
     private bool wallSliding = false;
     private bool isGrounded = false;
     private bool wallJumping = false;
+    private bool disabledMovement = false;
 
     private int numCurrentJumps;
 
@@ -58,7 +63,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        numCurrentJumps = numExtraJumpTotal;
+        ResetJumpCount();
         playerInput.PlayerMain.Jump.started += _ => HoldJumpButton();
         playerInput.PlayerMain.Jump.canceled += _ => ReleaseJumpButton();
     }
@@ -67,7 +72,11 @@ public class Player : MonoBehaviour
     {
         movementInput = playerInput.PlayerMain.Move.ReadValue<float>();
 
-        Flip(movementInput);
+        if (!disabledMovement)
+        {
+            Flip(movementInput);
+        }
+
         Jump();
 
         anim.SetFloat("Air", rb.velocity.y);
@@ -87,7 +96,7 @@ public class Player : MonoBehaviour
 
         if (isGrounded)
         {
-            numCurrentJumps = numExtraJumpTotal;
+            ResetJumpCount();
             anim.SetBool("InAir", false);
             if (spawnDust)
             {
@@ -112,13 +121,25 @@ public class Player : MonoBehaviour
         if (wallSliding)
         {
             anim.SetBool("WallCling", true);
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, 0));
-            Debug.Log("Sliding");
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+            ResetJumpCountOnWall();
+
+            Jump();
         } else
         {
             anim.SetBool("WallCling", false);
         }
         
+    }
+
+    private void ResetJumpCount()
+    {
+        numCurrentJumps = numExtraJumpTotal;
+    }
+
+    private void ResetJumpCountOnWall()
+    {
+        numCurrentJumps = numExtraJumpTotal + 1;
     }
 
     public void SpawnDust()
@@ -133,9 +154,18 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if (isJumping) // If the player is holding jump button
+        if (isJumping && !disabledMovement) // If the player is holding jump button
         {
-            if (jumpTimeCounter > 0)
+            WallJumpCheck();
+            if (wallJumping)
+            {
+                rb.velocity = new Vector2(xWallForce * -movementInput, yWallForce);
+                Flip(rb.velocity.x);
+                OnDisableMovement();
+                return;
+            }
+            
+            if (jumpTimeCounter > 0 && !wallSliding)
             {
                 rb.velocity = Vector2.up * jumpVelocity;
                 jumpTimeCounter -= Time.deltaTime;
@@ -144,6 +174,33 @@ public class Player : MonoBehaviour
                 isJumping = false;
             }
         }
+    }
+
+    private void OnDisableMovement()
+    {
+        disabledMovement = true;
+        StartCoroutine(StartDisableCountDown());
+    }
+
+    private IEnumerator StartDisableCountDown()
+    {
+        yield return new WaitForSeconds(timeDisabledAfterWallJump);
+        disabledMovement = false;
+        isJumping = false;
+    }
+
+    private void WallJumpCheck()
+    {
+        if (wallSliding)
+        {
+            wallJumping = true;
+            Invoke(nameof(DisableWallJump), wallJumpTime);
+        }
+    }
+
+    private void DisableWallJump()
+    {
+        wallJumping = false;
     }
 
     private void HoldJumpButton()
@@ -162,14 +219,10 @@ public class Player : MonoBehaviour
         isJumping = false;
     }
 
-    /*private bool IsGrounded()
-    {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, groundLayer);
-        return raycastHit.collider != null;
-    }*/
-
     private void Move()
     {
+        if (disabledMovement) { return; }
+
         rb.velocity = new Vector2(movementInput * speed, rb.velocity.y);
 
         if(Mathf.Abs(movementInput) < Mathf.Epsilon) 
@@ -186,11 +239,9 @@ public class Player : MonoBehaviour
         if (direction < 0f)
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
-            //transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
         } else if (direction > 0f)
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
-            //transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
         }
     }
 
