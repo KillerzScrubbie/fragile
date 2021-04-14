@@ -13,28 +13,41 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioSource footstep;
     [SerializeField] private float jumpTime = 0.35f;
 
+    // Particles effect
     [SerializeField] private ParticleSystem dustEffect = null;
     [SerializeField] private ParticleSystem dustJumpEffect = null;
     [SerializeField] private Transform feet = null;
 
+    // Wall Sliding and wall jumping
+    [SerializeField] private Transform frontCheck = null;
+    [SerializeField] private float wallSlidingSpeed = 2f;
+    [SerializeField] private float checkRadius = 0.1f;
+
     private float jumpTimeCounter;
-    private BoxCollider2D coll;
+    private float xWallForce;
+    // private BoxCollider2D coll;
     private PlayerInput playerInput;
     private Rigidbody2D rb;
+
+    // Booleans
     private bool isJumping = false;
     private bool spawnDust = false;
+    private bool isTouchingFront = false;
+    private bool wallSliding = false;
+    private bool isGrounded = false;
+    private bool wallJumping = false;
 
     private int numCurrentJumps;
 
-    float movementInput;
+    private float movementInput;
 
-    Animator anim;
+    private Animator anim;
 
     private void Awake()
     {
         playerInput = new PlayerInput();
         rb = GetComponent<Rigidbody2D>();
-        coll = GetComponent<BoxCollider2D>();
+        // coll = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
         footstep = GetComponent<AudioSource>();
     }
@@ -65,11 +78,14 @@ public class Player : MonoBehaviour
         // Method to mess with the Physics engine, avoid doing Physics in Update method.
         Move();
         GroundCheck();
+        WallCheck();
     }
 
     private void GroundCheck()
     {
-        if (IsGrounded())
+        isGrounded = Physics2D.OverlapCircle(feet.position, checkRadius, groundLayer);
+
+        if (isGrounded)
         {
             numCurrentJumps = numExtraJumpTotal;
             anim.SetBool("InAir", false);
@@ -85,6 +101,24 @@ public class Player : MonoBehaviour
             anim.SetBool("InAir", true);
             spawnDust = true;
         }
+    }
+
+    private void WallCheck()
+    {
+        isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, groundLayer);
+
+        wallSliding = (isTouchingFront && !isGrounded && movementInput != 0);
+
+        if (wallSliding)
+        {
+            anim.SetBool("WallCling", true);
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, 0));
+            Debug.Log("Sliding");
+        } else
+        {
+            anim.SetBool("WallCling", false);
+        }
+        
     }
 
     public void SpawnDust()
@@ -128,11 +162,11 @@ public class Player : MonoBehaviour
         isJumping = false;
     }
 
-    private bool IsGrounded()
+    /*private bool IsGrounded()
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, groundLayer);
         return raycastHit.collider != null;
-    }
+    }*/
 
     private void Move()
     {

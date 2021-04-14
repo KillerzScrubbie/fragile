@@ -6260,21 +6260,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 162314654839063787, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 162314654839063789, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 162314654839063789, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.8
+      value: 0.52
       objectReference: {fileID: 0}
     - target: {fileID: 162314654839063789, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.11
+      value: 2.8
       objectReference: {fileID: 0}
     - target: {fileID: 162314654839063789, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6321,10 +6317,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 6564688125001885201, guid: 54a347f8a9c65e044bf26ff111985138, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.6018825
+      objectReference: {fileID: 0}
+    - target: {fileID: 6564688125001885201, guid: 54a347f8a9c65e044bf26ff111985138, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.478919
+      objectReference: {fileID: 0}
     - target: {fileID: 6564688125001885202, guid: 54a347f8a9c65e044bf26ff111985138, type: 3}
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 255022572}
+    - target: {fileID: 6564688125222817891, guid: 54a347f8a9c65e044bf26ff111985138, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.6018825
+      objectReference: {fileID: 0}
+    - target: {fileID: 6564688125222817891, guid: 54a347f8a9c65e044bf26ff111985138, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.478919
+      objectReference: {fileID: 0}
     - target: {fileID: 8054419522130438950, guid: 54a347f8a9c65e044bf26ff111985138, type: 3}
       propertyPath: m_RootOrder
       value: 0
