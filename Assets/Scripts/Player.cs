@@ -13,11 +13,16 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioSource footstep;
     [SerializeField] private float jumpTime = 0.35f;
 
+    [SerializeField] private ParticleSystem dustEffect = null;
+    [SerializeField] private ParticleSystem dustJumpEffect = null;
+    [SerializeField] private Transform feet = null;
+
     private float jumpTimeCounter;
     private BoxCollider2D coll;
     private PlayerInput playerInput;
     private Rigidbody2D rb;
     private bool isJumping = false;
+    private bool spawnDust = false;
 
     private int numCurrentJumps;
 
@@ -41,7 +46,6 @@ public class Player : MonoBehaviour
     private void Start()
     {
         numCurrentJumps = numExtraJumpTotal;
-        // playerInput.PlayerMain.Jump.performed += _ => Jump();
         playerInput.PlayerMain.Jump.started += _ => HoldJumpButton();
         playerInput.PlayerMain.Jump.canceled += _ => ReleaseJumpButton();
     }
@@ -52,11 +56,6 @@ public class Player : MonoBehaviour
 
         Flip(movementInput);
         Jump();
-
-        /*if (playerInput.PlayerMain.Jump)
-        {
-            Debug.Log("Hold");
-        }*/
 
         anim.SetFloat("Air", rb.velocity.y);
     }
@@ -74,11 +73,28 @@ public class Player : MonoBehaviour
         {
             numCurrentJumps = numExtraJumpTotal;
             anim.SetBool("InAir", false);
+            if (spawnDust)
+            {
+                SpawnJumpDust();
+                spawnDust = false;
+                Footstep();
+            }
         }
         else
         {
             anim.SetBool("InAir", true);
+            spawnDust = true;
         }
+    }
+
+    public void SpawnDust()
+    {
+        Instantiate(dustEffect, feet.position, Quaternion.identity);
+    }
+
+    private void SpawnJumpDust()
+    {
+        Instantiate(dustJumpEffect, feet.position, Quaternion.identity);
     }
 
     private void Jump()
@@ -102,16 +118,14 @@ public class Player : MonoBehaviour
         {
             isJumping = true;
             jumpTimeCounter = jumpTime; // Add jump time counter for holding
-            //rb.velocity = Vector2.up * jumpVelocity;
             numCurrentJumps--;
+            SpawnJumpDust();
         }
-        Debug.Log("HOld");
     }
 
     private void ReleaseJumpButton()
     {
         isJumping = false;
-        Debug.Log("RELEASE");
     }
 
     private bool IsGrounded()

@@ -33,7 +33,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.8, y: -1.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1920100973140553583}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -167,13 +168,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpVelocity: 3
+  jumpVelocity: 3.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   numExtraJumpTotal: 1
   footstep: {fileID: 255022578}
-  jumpTime: 0.5
+  jumpTime: 0.35
+  dustEffect: {fileID: 9194285573750655406, guid: 562f69fdbf6c98446a72b36d3fd50f45, type: 3}
+  dustJumpEffect: {fileID: 9194285573750655406, guid: 0d208637d715c464688032eabbf048b9, type: 3}
+  feet: {fileID: 1920100973140553583}
 --- !u!82 &255022578
 AudioSource:
   m_ObjectHideFlags: 0
@@ -300,3 +304,33 @@ MonoBehaviour:
   m_DefaultActionMap: PlayerMain
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!1 &1452471643719820870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1920100973140553583}
+  m_Layer: 0
+  m_Name: Feet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1920100973140553583
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452471643719820870}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.506, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 162314654839063789}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
