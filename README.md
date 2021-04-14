@@ -16,7 +16,7 @@ Focus mainly on finding assets, sounds, and doing simple coding like animations 
 - Added Background music.
 - Added main menu.
 - Tested on 2 iPhone devices at different resolution.
-~~- Implemented a script from MIT to help with different mobile resolutions. (WIP as the aspect ratio is not the same across devices)~~ *Unused due to conflicts with Cinemachine*
+- ~~Implemented a script from MIT to help with different mobile resolutions. (WIP as the aspect ratio is not the same across devices)~~ *Unused due to conflicts with Cinemachine*
 - Added Spikes
 - Added a basic game loop once the player has died
 - Added login and Register
