@@ -6,19 +6,21 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    [Header("Variables")]
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpVelocity = 5f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private int numExtraJumpTotal = 1;
     [SerializeField] private AudioSource footstep;
     [SerializeField] private float jumpTime = 0.35f;
+    [SerializeField] private Animator anim = null;
 
-    // Particles effect
+    [Header("Particles")] // Particles effect
     [SerializeField] private ParticleSystem dustEffect = null;
     [SerializeField] private ParticleSystem dustJumpEffect = null;
     [SerializeField] private Transform feet = null;
 
-    // Wall Sliding and wall jumping
+    [Header("Wall Jump")] // Wall Sliding and wall jumping
     [SerializeField] private Transform frontCheck = null;
     [SerializeField] private float wallSlidingSpeed = 2f;
     [SerializeField] private float checkRadius = 0.1f;
@@ -27,15 +29,15 @@ public class Player : MonoBehaviour
     [SerializeField] private float wallJumpTime; // Time the x and y wall force is applied
     [SerializeField] private float timeDisabledAfterWallJump = 0.1f;
 
-    // Dashing
+    [Header("Dash")] // Dashing
     [SerializeField] private float dashForce = 10f;
     [SerializeField] private float timeDisabledAfterDash = 0.1f;
 
     private float jumpTimeCounter;
     
-    // private BoxCollider2D coll;
     private PlayerInput playerInput;
     private Rigidbody2D rb;
+    // private SoundFX soundFX;
 
     // Booleans
     private bool isJumping = false;
@@ -52,15 +54,10 @@ public class Player : MonoBehaviour
     private float movementInput;
     private float facingDirection;
 
-    private Animator anim;
-
     private void Awake()
     {
         playerInput = new PlayerInput();
         rb = GetComponent<Rigidbody2D>();
-        // coll = GetComponent<BoxCollider2D>();
-        anim = GetComponent<Animator>();
-        footstep = GetComponent<AudioSource>();
     }
 
     private void OnEnable() => playerInput.Enable();
