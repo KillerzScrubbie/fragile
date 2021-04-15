@@ -27,6 +27,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float wallJumpTime; // Time the x and y wall force is applied
     [SerializeField] private float timeDisabledAfterWallJump = 0.1f;
 
+    // Dashing
+    [SerializeField] private float dashForce = 10f;
+    [SerializeField] private float timeDisabledAfterDash = 0.1f;
+
     private float jumpTimeCounter;
     
     // private BoxCollider2D coll;
@@ -41,10 +45,12 @@ public class Player : MonoBehaviour
     private bool isGrounded = false;
     private bool wallJumping = false;
     private bool disabledMovement = false;
+    private bool dashing = false;
 
     private int numCurrentJumps;
 
     private float movementInput;
+    private float facingDirection;
 
     private Animator anim;
 
@@ -66,6 +72,7 @@ public class Player : MonoBehaviour
         ResetJumpCount();
         playerInput.PlayerMain.Jump.started += _ => HoldJumpButton();
         playerInput.PlayerMain.Jump.canceled += _ => ReleaseJumpButton();
+        playerInput.PlayerMain.Dash.performed += _ => Dash();
     }
 
     private void Update()
@@ -75,9 +82,10 @@ public class Player : MonoBehaviour
         if (!disabledMovement)
         {
             Flip(movementInput);
+            Jump();
         }
 
-        Jump();
+        facingDirection = transform.right.x;
 
         anim.SetFloat("Air", rb.velocity.y);
     }
@@ -116,14 +124,20 @@ public class Player : MonoBehaviour
     {
         isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, groundLayer);
 
-        wallSliding = (isTouchingFront && !isGrounded && movementInput != 0);
+        if (wallSliding) 
+        {
+            wallSliding = (isTouchingFront && !isGrounded);
+        } else
+        {
+            wallSliding = (isTouchingFront && !isGrounded && movementInput != 0); 
+        }
 
         if (wallSliding)
         {
             anim.SetBool("WallCling", true);
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
             ResetJumpCountOnWall();
-
+            isJumping = false;
             Jump();
         } else
         {
@@ -135,11 +149,13 @@ public class Player : MonoBehaviour
     private void ResetJumpCount()
     {
         numCurrentJumps = numExtraJumpTotal;
+        dashing = false;
     }
 
     private void ResetJumpCountOnWall()
     {
         numCurrentJumps = numExtraJumpTotal + 1;
+        dashing = false;
     }
 
     public void SpawnDust()
@@ -154,14 +170,14 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if (isJumping && !disabledMovement) // If the player is holding jump button
+        if (isJumping) // If the player is holding jump button
         {
             WallJumpCheck();
             if (wallJumping)
             {
-                rb.velocity = new Vector2(xWallForce * -movementInput, yWallForce);
+                rb.velocity = new Vector2(xWallForce * -facingDirection, yWallForce);
                 Flip(rb.velocity.x);
-                OnDisableMovement();
+                OnDisableMovement(timeDisabledAfterWallJump);
                 return;
             }
             
@@ -176,15 +192,15 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnDisableMovement()
+    private void OnDisableMovement(float time)
     {
         disabledMovement = true;
-        StartCoroutine(StartDisableCountDown());
+        StartCoroutine(StartDisableCountDown(time));
     }
 
-    private IEnumerator StartDisableCountDown()
+    private IEnumerator StartDisableCountDown(float timeDisabled)
     {
-        yield return new WaitForSeconds(timeDisabledAfterWallJump);
+        yield return new WaitForSeconds(timeDisabled);
         disabledMovement = false;
         isJumping = false;
     }
@@ -217,6 +233,19 @@ public class Player : MonoBehaviour
     private void ReleaseJumpButton()
     {
         isJumping = false;
+    }
+
+    private void Dash()
+    {
+        if (disabledMovement) { return; }
+
+        if (!dashing)
+        {
+            //rb.velocity = new Vector2(transform.right)
+            Debug.Log(facingDirection);
+            dashing = true;
+            OnDisableMovement(timeDisabledAfterDash);
+        }
     }
 
     private void Move()
