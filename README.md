@@ -22,18 +22,27 @@ Focus mainly on finding assets, sounds, and doing simple coding like animations 
 - Added login and Register
 - *NEW => Implemented Cinemachine with smooth camera tracking*
 - *NEW => Improved movement mechanics*
+- *NEW => Added particles*
+- *NEW => UI Cleanup*
+- *NEW => Created a demo level*
 
 **What we will do within this term**
 - Reimplement the joystick for movement, if possible.
-- Implement dashing, climbing ladders, and bouncing off from a projectile.
+- Implement climbing ladders, and bouncing off from a projectile.
 - Add Pause button and return to main menu while in game.
-- Create a demo level to play.
-- Tidyup UIs
 - Add some transitions between scenes
-- Add some particle effects for when the player die or the player jump
+- Add more particle effects for when the player die
 - Add time-based hazards like flood.
+- *NEW => Create more levels for each abilities*
+- *NEW => Create a tutorial*
 
 # Dev Logs
+
+Log #4 - 15/4/2021
+- Tidied up the main menu page and all the panels
+- Implemented dashing with animations
+- Created Level 1 which requires only a normal jump to complete
+- Created a progression system where player needs to obtain abilities before using them **=> Not fully implemented yet**
 
 Log #3 - 14/4/2021
 - Implemented better wall jumping and wall sliding mechanics
