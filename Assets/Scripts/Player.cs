@@ -257,6 +257,7 @@ public class Player : MonoBehaviour
     private void ReleaseJumpButton()
     {
         isJumping = false;
+        rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, float.MinValue, 0));
     }
 
     private void Dash()

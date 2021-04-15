@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  jumpVelocity: 5
+  jumpVelocity: 7
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -184,8 +184,8 @@ MonoBehaviour:
   frontCheck: {fileID: 5240120567758635040}
   wallSlidingSpeed: 1
   checkRadius: 0.2
-  xWallForce: 4.5
-  yWallForce: 7.5
+  xWallForce: 4
+  yWallForce: 9
   wallJumpTime: 0.01
   timeDisabledAfterWallJump: 0.17
   dashForce: 10
