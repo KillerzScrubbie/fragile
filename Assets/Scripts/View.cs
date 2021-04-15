@@ -7,6 +7,7 @@ public class View : MonoBehaviour
 {
     public Transform upper;
     public Transform center;
+    public Transform lower;
 
     public void Show()
     {
@@ -16,5 +17,10 @@ public class View : MonoBehaviour
     public void Hide()
     {
         transform.DOMoveY(upper.position.y, 1);
+    }
+
+    public void HideLogin()
+    {
+        transform.DOMoveY(lower.position.y, 1);
     }
 }
