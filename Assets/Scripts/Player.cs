@@ -10,10 +10,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpVelocity = 5f;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private int numExtraJumpTotal = 1;
+    [SerializeField] private int numExtraJumpTotal = 0;
     [SerializeField] private AudioSource footstep;
     [SerializeField] private float jumpTime = 0.35f;
     [SerializeField] private Animator anim = null;
+    [SerializeField] private float GRAVITY_SCALE = 1.5f;
 
     [Header("Particles")] // Particles effect
     [SerializeField] private ParticleSystem dustEffect = null;
@@ -32,6 +33,11 @@ public class Player : MonoBehaviour
     [Header("Dash")] // Dashing
     [SerializeField] private float dashForce = 10f;
     [SerializeField] private float timeDisabledAfterDash = 0.1f;
+
+    [Header("Abilities Unlocked")]
+    [SerializeField] private bool dashUnlocked = false;
+    [SerializeField] private bool doubleJumpUnlocked = false;
+    [SerializeField] private bool wallJumpUnlocked = false;
 
     private float jumpTimeCounter;
     
@@ -92,7 +98,11 @@ public class Player : MonoBehaviour
         // Method to mess with the Physics engine, avoid doing Physics in Update method.
         Move();
         GroundCheck();
-        WallCheck();
+
+        if (wallJumpUnlocked)
+        {
+            WallCheck();
+        }        
     }
 
     private void GroundCheck()
@@ -121,10 +131,10 @@ public class Player : MonoBehaviour
     {
         isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, groundLayer);
 
-        if (wallSliding) 
+        if ((wallSliding && !dashing) || (!wallSliding && dashing))
         {
             wallSliding = (isTouchingFront && !isGrounded);
-        } else
+        } else if (!wallSliding && !dashing)
         {
             wallSliding = (isTouchingFront && !isGrounded && movementInput != 0); 
         }
@@ -169,13 +179,15 @@ public class Player : MonoBehaviour
     {
         if (isJumping) // If the player is holding jump button
         {
-            WallJumpCheck();
-            if (wallJumping)
-            {
-                rb.velocity = new Vector2(xWallForce * -facingDirection, yWallForce);
-                Flip(rb.velocity.x);
-                OnDisableMovement(timeDisabledAfterWallJump);
-                return;
+            if (wallJumpUnlocked) {
+                WallJumpCheck();
+                if (wallJumping)
+                {
+                    rb.velocity = new Vector2(xWallForce * -facingDirection, yWallForce);
+                    Flip(rb.velocity.x);
+                    OnDisableMovement(timeDisabledAfterWallJump);
+                    return;
+                } 
             }
             
             if (jumpTimeCounter > 0 && !wallSliding)
@@ -200,6 +212,8 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(timeDisabled);
         disabledMovement = false;
         isJumping = false;
+        anim.SetBool("Dashing", false);
+        rb.gravityScale = GRAVITY_SCALE;
     }
 
     private void WallJumpCheck()
@@ -218,13 +232,26 @@ public class Player : MonoBehaviour
 
     private void HoldJumpButton()
     {
-        if (numCurrentJumps > 0)
+        if (doubleJumpUnlocked)
         {
-            isJumping = true;
-            jumpTimeCounter = jumpTime; // Add jump time counter for holding
-            numCurrentJumps--;
-            SpawnJumpDust();
+            if (numCurrentJumps > 0)
+            {
+                isJumping = true;
+                jumpTimeCounter = jumpTime; // Add jump time counter for holding
+                numCurrentJumps--;
+                SpawnJumpDust();
+            }
+        } else
+        {
+            if (isGrounded || wallSliding)
+            {
+                isJumping = true;
+                jumpTimeCounter = jumpTime; // Add jump time counter for holding
+                SpawnJumpDust();
+            }
         }
+
+        
     }
 
     private void ReleaseJumpButton()
@@ -234,13 +261,23 @@ public class Player : MonoBehaviour
 
     private void Dash()
     {
-        if (disabledMovement) { return; }
+        if (disabledMovement || !dashUnlocked) { return; }
 
         if (!dashing)
         {
-            //rb.velocity = new Vector2(transform.right)
-            Debug.Log(facingDirection);
+            if (wallSliding)
+            {
+                rb.velocity = Vector2.left * dashForce * facingDirection;
+            }
+            else
+            {
+                rb.velocity = Vector2.right * dashForce * facingDirection;
+            }
+
+            Flip(rb.velocity.x);
+            rb.gravityScale = 0;
             dashing = true;
+            anim.SetBool("Dashing", dashing);
             OnDisableMovement(timeDisabledAfterDash);
         }
     }
@@ -258,6 +295,21 @@ public class Player : MonoBehaviour
         {
             anim.SetBool("Running", true);
         }
+    }
+
+    private void UnlockWallJump()
+    {
+        wallJumpUnlocked = true;
+    }
+
+    private void UnlockDash()
+    {
+        dashUnlocked = true;
+    }
+
+    private void UnlockDoubleJump()
+    {
+        doubleJumpUnlocked = true;
     }
 
     private void Flip(float direction)

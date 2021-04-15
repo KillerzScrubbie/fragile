@@ -177,6 +177,7 @@ MonoBehaviour:
   footstep: {fileID: 255022578}
   jumpTime: 0.35
   anim: {fileID: 162314654839063786}
+  GRAVITY_SCALE: 1.5
   dustEffect: {fileID: 9194285573750655406, guid: 562f69fdbf6c98446a72b36d3fd50f45, type: 3}
   dustJumpEffect: {fileID: 9194285573750655406, guid: 0d208637d715c464688032eabbf048b9, type: 3}
   feet: {fileID: 1920100973140553583}
@@ -187,8 +188,8 @@ MonoBehaviour:
   yWallForce: 6
   wallJumpTime: 0.01
   timeDisabledAfterWallJump: 0.17
-  dashForce: 10
-  timeDisabledAfterDash: 0.1
+  dashForce: 12
+  timeDisabledAfterDash: 0.15
 --- !u!82 &255022578
 AudioSource:
   m_ObjectHideFlags: 0
