@@ -124,7 +124,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1.5
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  jumpVelocity: 3.5
+  jumpVelocity: 5
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -177,19 +177,22 @@ MonoBehaviour:
   footstep: {fileID: 255022578}
   jumpTime: 0.35
   anim: {fileID: 162314654839063786}
-  GRAVITY_SCALE: 1.5
+  GRAVITY_SCALE: 2
   dustEffect: {fileID: 9194285573750655406, guid: 562f69fdbf6c98446a72b36d3fd50f45, type: 3}
   dustJumpEffect: {fileID: 9194285573750655406, guid: 0d208637d715c464688032eabbf048b9, type: 3}
   feet: {fileID: 1920100973140553583}
   frontCheck: {fileID: 5240120567758635040}
   wallSlidingSpeed: 1
   checkRadius: 0.2
-  xWallForce: 4
-  yWallForce: 6
+  xWallForce: 4.5
+  yWallForce: 7.5
   wallJumpTime: 0.01
   timeDisabledAfterWallJump: 0.17
-  dashForce: 12
-  timeDisabledAfterDash: 0.15
+  dashForce: 10
+  timeDisabledAfterDash: 0.25
+  dashUnlocked: 0
+  doubleJumpUnlocked: 0
+  wallJumpUnlocked: 0
 --- !u!82 &255022578
 AudioSource:
   m_ObjectHideFlags: 0

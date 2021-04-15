@@ -1954,7 +1954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.29803923}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5708,7 +5708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.29803923}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5912,6 +5912,10 @@ PrefabInstance:
     - target: {fileID: 275497780689582458, guid: 3d7d12553dbe7ff4ea982342a4bb97bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6945501259291043591, guid: 3d7d12553dbe7ff4ea982342a4bb97bd, type: 3}
+      propertyPath: m_Color.a
+      value: 0.5019608
       objectReference: {fileID: 0}
     - target: {fileID: 9063779864668086606, guid: 3d7d12553dbe7ff4ea982342a4bb97bd, type: 3}
       propertyPath: m_Name
@@ -6486,14 +6490,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1430324309305413138, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
-      propertyPath: dashForce
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430324309305413138, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
-      propertyPath: timeDisabledAfterDash
-      value: 0.25
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
 --- !u!1001 &6564688124959483095
@@ -6650,6 +6646,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6945501259291043591, guid: 3d7d12553dbe7ff4ea982342a4bb97bd, type: 3}
       propertyPath: m_Color.a
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 6945501259291043591, guid: 3d7d12553dbe7ff4ea982342a4bb97bd, type: 3}
+      propertyPath: m_UseSpriteMesh
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9063779864668086606, guid: 3d7d12553dbe7ff4ea982342a4bb97bd, type: 3}
