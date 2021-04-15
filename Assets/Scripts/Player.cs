@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
 
     [Header("Wall Jump")] // Wall Sliding and wall jumping
     [SerializeField] private Transform frontCheck = null;
+    [SerializeField] private Transform headCheck = null;
     [SerializeField] private float wallSlidingSpeed = 2f;
     [SerializeField] private float checkRadius = 0.1f;
     [SerializeField] private float xWallForce;
@@ -179,6 +180,12 @@ public class Player : MonoBehaviour
     {
         if (isJumping) // If the player is holding jump button
         {
+            if (HeadCheck())
+            {
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, float.MinValue, 0));
+                isJumping = false;
+            }
+
             if (wallJumpUnlocked) {
                 WallJumpCheck();
                 if (wallJumping)
@@ -223,6 +230,11 @@ public class Player : MonoBehaviour
             wallJumping = true;
             Invoke(nameof(DisableWallJump), wallJumpTime);
         }
+    }
+
+    private bool HeadCheck()
+    {
+        return Physics2D.OverlapCircle(headCheck.position, checkRadius, groundLayer);
     }
 
     private void DisableWallJump()

@@ -183,6 +183,7 @@ MonoBehaviour:
   dustJumpEffect: {fileID: 9194285573750655406, guid: 0d208637d715c464688032eabbf048b9, type: 3}
   feet: {fileID: 1920100973140553583}
   frontCheck: {fileID: 5240120567758635040}
+  headCheck: {fileID: 2971948948763234887}
   wallSlidingSpeed: 1
   checkRadius: 0.2
   xWallForce: 4
