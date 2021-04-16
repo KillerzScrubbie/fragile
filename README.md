@@ -24,7 +24,7 @@ Focus mainly on finding assets, sounds, and doing simple coding like animations 
 - *NEW => Improved movement mechanics*
 - *NEW => Added particles*
 - *NEW => UI Cleanup*
-- *NEW => Created a demo level*
+- *NEW => Created 2 demo levels*
 
 **What we will do within this term**
 - Reimplement the joystick for movement, if possible.
@@ -33,13 +33,21 @@ Focus mainly on finding assets, sounds, and doing simple coding like animations 
 - Add some transitions between scenes
 - Add more particle effects for when the player die
 - Add time-based hazards like flood.
-- *NEW => Create more levels for each abilities*
+- *WIP => Create more levels for each abilities*
 - *NEW => Create a tutorial*
 
 # Dev Logs
 
+Log #5
+- Created level 2 will increase the player skills to use dash ability
+- Added a new zoom-out button to see the surroundings
+- Created a basic scene linking
+- Added more sound effects
+- Tested a build on Android, so far 1 device tested with no performance issues
+
 Log #4 - 15/4/2021
-- Tidied up the main menu page and all the panels
+- Tidied up the main menu page and all the panels to be mobile-friendly
+- Added custom font
 - Implemented dashing with animations
 - Created Level 1 which requires only a normal jump to complete
 - Created a progression system where player needs to obtain abilities before using them **=> Not fully implemented yet**
