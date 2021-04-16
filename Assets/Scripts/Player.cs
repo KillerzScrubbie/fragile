@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class Player : MonoBehaviour
 {
@@ -11,10 +12,16 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpVelocity = 5f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private int numExtraJumpTotal = 0;
-    [SerializeField] private AudioSource footstep;
     [SerializeField] private float jumpTime = 0.35f;
     [SerializeField] private Animator anim = null;
     [SerializeField] private float GRAVITY_SCALE = 1.5f;
+    [SerializeField] private float maxTerminalVelocity = 4f;
+    [SerializeField] private BoxCollider2D boxCollider = null;
+    
+    [Header("Sounds")]
+    [SerializeField] private AudioSource footstep;
+    [SerializeField] private AudioClip[] footstepClip;
+    [SerializeField] private AudioSource jumpSound;
 
     [Header("Particles")] // Particles effect
     [SerializeField] private ParticleSystem dustEffect = null;
@@ -34,6 +41,7 @@ public class Player : MonoBehaviour
     [Header("Dash")] // Dashing
     [SerializeField] private float dashForce = 10f;
     [SerializeField] private float timeDisabledAfterDash = 0.1f;
+    [SerializeField] private float dashCooldown = 0.5f;
 
     [Header("Abilities Unlocked")]
     [SerializeField] private bool dashUnlocked = false;
@@ -42,8 +50,11 @@ public class Player : MonoBehaviour
 
     private float jumpTimeCounter;
     
-    private PlayerInput playerInput;
+    public PlayerInput playerInput;
     private Rigidbody2D rb;
+    private Camera mainCamera;
+    private readonly float defaultCameraSize = 4f;
+    private readonly float zoomOutSize = 6f;
     // private SoundFX soundFX;
 
     // Booleans
@@ -55,6 +66,8 @@ public class Player : MonoBehaviour
     private bool wallJumping = false;
     private bool disabledMovement = false;
     private bool dashing = false;
+    private bool canDash = true;
+    [SerializeField] private bool freeCamPressed = false;
 
     private int numCurrentJumps;
 
@@ -77,17 +90,16 @@ public class Player : MonoBehaviour
         playerInput.PlayerMain.Jump.started += _ => HoldJumpButton();
         playerInput.PlayerMain.Jump.canceled += _ => ReleaseJumpButton();
         playerInput.PlayerMain.Dash.performed += _ => Dash();
+        playerInput.PlayerMain.FreeCam.started += _ => OnPressFreeCam();
+        playerInput.PlayerMain.FreeCam.canceled += _ => OnReleaseFreeCam();
+
+        mainCamera = GetComponent<Camera>();
+        mainCamera = Camera.main;
     }
 
     private void Update()
     {
         movementInput = playerInput.PlayerMain.Move.ReadValue<float>();
-
-        if (!disabledMovement)
-        {
-            Flip(movementInput);
-            Jump();
-        }
 
         facingDirection = transform.right.x;
 
@@ -97,8 +109,20 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         // Method to mess with the Physics engine, avoid doing Physics in Update method.
-        Move();
+        if(!disabledMovement)
+        {
+            Move();
+            Jump();
+            Flip(movementInput);
+        }
+        
         GroundCheck();
+        FreeCam();
+
+        if (rb.velocity.y < -maxTerminalVelocity)
+        {
+            ClampVertVelocity();
+        }
 
         if (wallJumpUnlocked)
         {
@@ -106,9 +130,29 @@ public class Player : MonoBehaviour
         }        
     }
 
+    private void FreeCam()
+    {
+        var brain = (mainCamera == null) ? null : mainCamera.GetComponent<CinemachineBrain>();
+        var virtualCam = (brain == null) ? null : brain.ActiveVirtualCamera as CinemachineVirtualCamera;
+
+        virtualCam.m_Lens.OrthographicSize = (freeCamPressed && virtualCam != null) ? zoomOutSize : defaultCameraSize;
+    }
+
+    private void OnPressFreeCam()
+    {
+        freeCamPressed = true;
+        Debug.Log("FREECAM");
+    }
+
+    private void OnReleaseFreeCam()
+    {
+        freeCamPressed = false;
+        Debug.Log("BACK");
+    }
+
     private void GroundCheck()
     {
-        isGrounded = Physics2D.OverlapCircle(feet.position, checkRadius, groundLayer);
+        isGrounded = (Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down, checkRadius, groundLayer).collider != null); //Physics2D.OverlapCircle(feet.position, checkRadius, groundLayer);
 
         if (isGrounded)
         {
@@ -152,6 +196,11 @@ public class Player : MonoBehaviour
             anim.SetBool("WallCling", false);
         }
         
+    }
+
+    private void ClampVertVelocity()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -maxTerminalVelocity, float.MaxValue));
     }
 
     private void ResetJumpCount()
@@ -234,7 +283,8 @@ public class Player : MonoBehaviour
 
     private bool HeadCheck()
     {
-        return Physics2D.OverlapCircle(headCheck.position, checkRadius, groundLayer);
+        //return Physics2D.OverlapCircle(headCheck.position, checkRadius, groundLayer);
+        return Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size / 1.2f, 0f, Vector2.up, checkRadius, groundLayer).collider != null;
     }
 
     private void DisableWallJump()
@@ -252,6 +302,7 @@ public class Player : MonoBehaviour
                 jumpTimeCounter = jumpTime; // Add jump time counter for holding
                 numCurrentJumps--;
                 SpawnJumpDust();
+                PlayJumpSound();
             }
         } else
         {
@@ -260,6 +311,7 @@ public class Player : MonoBehaviour
                 isJumping = true;
                 jumpTimeCounter = jumpTime; // Add jump time counter for holding
                 SpawnJumpDust();
+                PlayJumpSound();
             }
         }
 
@@ -269,14 +321,14 @@ public class Player : MonoBehaviour
     private void ReleaseJumpButton()
     {
         isJumping = false;
-        rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, float.MinValue, 0));
+        rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, float.MinValue, 2));
     }
 
     private void Dash()
     {
         if (disabledMovement || !dashUnlocked) { return; }
 
-        if (!dashing)
+        if (!dashing && canDash)
         {
             if (wallSliding)
             {
@@ -290,15 +342,21 @@ public class Player : MonoBehaviour
             Flip(rb.velocity.x);
             rb.gravityScale = 0;
             dashing = true;
+            canDash = false;
             anim.SetBool("Dashing", dashing);
             OnDisableMovement(timeDisabledAfterDash);
+            StartCoroutine(WaitForCooldown(dashCooldown));
         }
+    }
+
+    private IEnumerator WaitForCooldown(float time)
+    {
+        yield return new WaitForSeconds(time);
+        canDash = true;
     }
 
     private void Move()
     {
-        if (disabledMovement) { return; }
-
         rb.velocity = new Vector2(movementInput * speed, rb.velocity.y);
 
         if(Mathf.Abs(movementInput) < Mathf.Epsilon) 
@@ -338,6 +396,13 @@ public class Player : MonoBehaviour
 
     private void Footstep()
     {
+        footstep.clip = footstepClip[UnityEngine.Random.Range(0, footstepClip.Length)];
         footstep.Play();
+    }
+
+    private void PlayJumpSound()
+    {   
+        jumpSound.time = 0.08f;
+        jumpSound.Play();
     }
 }

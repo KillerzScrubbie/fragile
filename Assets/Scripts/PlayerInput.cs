@@ -41,6 +41,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""FreeCam"",
+                    ""type"": ""Button"",
+                    ""id"": ""dc29103b-d73d-45fe-b673-4ac45cdb73ec"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold""
                 }
             ],
             ""bindings"": [
@@ -153,6 +161,28 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e1ad6b57-34f4-4254-b7a1-5741e17da547"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FreeCam"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3b5d5708-cb2f-4101-bd1f-a8b21391e1a1"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FreeCam"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -164,6 +194,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_PlayerMain_Move = m_PlayerMain.FindAction("Move", throwIfNotFound: true);
         m_PlayerMain_Jump = m_PlayerMain.FindAction("Jump", throwIfNotFound: true);
         m_PlayerMain_Dash = m_PlayerMain.FindAction("Dash", throwIfNotFound: true);
+        m_PlayerMain_FreeCam = m_PlayerMain.FindAction("FreeCam", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -216,6 +247,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerMain_Move;
     private readonly InputAction m_PlayerMain_Jump;
     private readonly InputAction m_PlayerMain_Dash;
+    private readonly InputAction m_PlayerMain_FreeCam;
     public struct PlayerMainActions
     {
         private @PlayerInput m_Wrapper;
@@ -223,6 +255,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_PlayerMain_Move;
         public InputAction @Jump => m_Wrapper.m_PlayerMain_Jump;
         public InputAction @Dash => m_Wrapper.m_PlayerMain_Dash;
+        public InputAction @FreeCam => m_Wrapper.m_PlayerMain_FreeCam;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMain; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -241,6 +274,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Dash.started -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnDash;
+                @FreeCam.started -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnFreeCam;
+                @FreeCam.performed -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnFreeCam;
+                @FreeCam.canceled -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnFreeCam;
             }
             m_Wrapper.m_PlayerMainActionsCallbackInterface = instance;
             if (instance != null)
@@ -254,6 +290,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
+                @FreeCam.started += instance.OnFreeCam;
+                @FreeCam.performed += instance.OnFreeCam;
+                @FreeCam.canceled += instance.OnFreeCam;
             }
         }
     }
@@ -263,5 +302,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnFreeCam(InputAction.CallbackContext context);
     }
 }
