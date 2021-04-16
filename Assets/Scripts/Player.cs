@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float GRAVITY_SCALE = 1.5f;
     [SerializeField] private float maxTerminalVelocity = 4f;
     [SerializeField] private BoxCollider2D boxCollider = null;
-    
+
     [Header("Sounds")]
     [SerializeField] private AudioSource footstep;
     [SerializeField] private AudioClip[] footstepClip;
@@ -30,7 +30,6 @@ public class Player : MonoBehaviour
 
     [Header("Wall Jump")] // Wall Sliding and wall jumping
     [SerializeField] private Transform frontCheck = null;
-    [SerializeField] private Transform headCheck = null;
     [SerializeField] private float wallSlidingSpeed = 2f;
     [SerializeField] private float checkRadius = 0.1f;
     [SerializeField] private float xWallForce;
@@ -49,7 +48,7 @@ public class Player : MonoBehaviour
     [SerializeField] private bool wallJumpUnlocked = false;
 
     private float jumpTimeCounter;
-    
+
     public PlayerInput playerInput;
     private Rigidbody2D rb;
     private Camera mainCamera;
@@ -67,7 +66,7 @@ public class Player : MonoBehaviour
     private bool disabledMovement = false;
     private bool dashing = false;
     private bool canDash = true;
-    [SerializeField] private bool freeCamPressed = false;
+    private bool freeCamPressed = false;
 
     private int numCurrentJumps;
 
@@ -99,6 +98,13 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (!disabledMovement)
+        {
+            Jump();
+            Flip(movementInput);
+            Move();
+        }
+
         movementInput = playerInput.PlayerMain.Move.ReadValue<float>();
 
         facingDirection = transform.right.x;
@@ -109,13 +115,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         // Method to mess with the Physics engine, avoid doing Physics in Update method.
-        if(!disabledMovement)
-        {
-            Move();
-            Jump();
-            Flip(movementInput);
-        }
-        
+
         GroundCheck();
         FreeCam();
 
@@ -127,7 +127,7 @@ public class Player : MonoBehaviour
         if (wallJumpUnlocked)
         {
             WallCheck();
-        }        
+        }
     }
 
     private void FreeCam()
@@ -141,13 +141,26 @@ public class Player : MonoBehaviour
     private void OnPressFreeCam()
     {
         freeCamPressed = true;
-        Debug.Log("FREECAM");
+        //StartCoroutine(StopFreeCam());
     }
+
+    /*private IEnumerator StopFreeCam()
+    {
+        if (freeCamPressed)
+        {
+            yield return new WaitForSeconds(freeCamTimer);
+            
+        } else
+        {
+            yield return new WaitForSeconds(0.001f);
+        }
+        
+        freeCamPressed = false;
+    }*/
 
     private void OnReleaseFreeCam()
     {
         freeCamPressed = false;
-        Debug.Log("BACK");
     }
 
     private void GroundCheck()
@@ -345,11 +358,11 @@ public class Player : MonoBehaviour
             canDash = false;
             anim.SetBool("Dashing", dashing);
             OnDisableMovement(timeDisabledAfterDash);
-            StartCoroutine(WaitForCooldown(dashCooldown));
+            StartCoroutine(WaitForDashCooldown(dashCooldown));
         }
     }
 
-    private IEnumerator WaitForCooldown(float time)
+    private IEnumerator WaitForDashCooldown(float time)
     {
         yield return new WaitForSeconds(time);
         canDash = true;
