@@ -8,7 +8,7 @@ using System.Linq;
 
 public class FirebaseManager : MonoBehaviour
 {
-    [SerializeField] private UIManager uiManager = null;
+    [SerializeField] private View uiManager = null;
 
     //Firebase variables
     [Header("Firebase")]
@@ -95,7 +95,7 @@ public class FirebaseManager : MonoBehaviour
     public void SignOutButton()
     {
         auth.SignOut();
-        UIManager.instance.LoginScreen();
+        // uiManager. DO LATER TO CREATE SIGN OUT
         ClearRegisterFields();
         ClearLoginFields();
     }
@@ -157,11 +157,11 @@ public class FirebaseManager : MonoBehaviour
             User = LoginTask.Result;
             Debug.LogFormat("User signed in successfully: {0} ({1})", User.DisplayName, User.Email);
             warningLoginText.text = "";
-            confirmLoginText.text = "Logged In";
+            confirmLoginText.text = $"Welcome, {User.DisplayName}!";
 
             yield return new WaitForSeconds(2);
 
-            uiManager.MenuScreen();
+            uiManager.OnSuccessfulLogin();
 
             /*StartCoroutine(LoadUserData());
 
@@ -193,7 +193,7 @@ public class FirebaseManager : MonoBehaviour
             var RegisterTask = auth.CreateUserWithEmailAndPasswordAsync(_email, _password);
             //Wait until the task completes
             yield return new WaitUntil(predicate: () => RegisterTask.IsCompleted);
-
+            
             if (RegisterTask.Exception != null)
             {
                 //If there are errors handle them
@@ -245,7 +245,7 @@ public class FirebaseManager : MonoBehaviour
                     {
                         //Username is now set
                         //Now return to login screen
-                        UIManager.instance.LoginScreen();
+                        uiManager.OnSuccessfulRegister();
                         warningRegisterText.text = "";
                         ClearRegisterFields();
                         ClearLoginFields();

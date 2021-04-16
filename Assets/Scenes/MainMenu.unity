@@ -843,21 +843,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 818499036}
+      - m_Target: {fileID: 1149951213}
         m_TargetAssemblyTypeName: View, Assembly-CSharp
-        m_MethodName: Hide
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1460982802}
-        m_TargetAssemblyTypeName: View, Assembly-CSharp
-        m_MethodName: Show
+        m_MethodName: OnPressCloseRegisterButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -939,11 +927,11 @@ RectTransform:
   m_Father: {fileID: 818499033}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -171}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 130, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &404362170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1627,9 +1615,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1460982802}
+      - m_Target: {fileID: 1149951213}
         m_TargetAssemblyTypeName: View, Assembly-CSharp
-        m_MethodName: Hide
+        m_MethodName: OnPressCloseLoginButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2586,10 +2574,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1312642458}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1149951213}
+        m_TargetAssemblyTypeName: View, Assembly-CSharp
+        m_MethodName: OnPressOptionsButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2597,18 +2585,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2121566860}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &719346701
 MonoBehaviour:
@@ -2825,7 +2801,7 @@ Transform:
   - {fileID: 1840889253}
   - {fileID: 1622794244}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &818499032
 GameObject:
@@ -2925,7 +2901,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upper: {fileID: 2139804212}
   center: {fileID: 1403497068}
-  lower: {fileID: 0}
+  lower: {fileID: 1249084430}
+  loginScreen: {fileID: 1460982800}
+  registerScreen: {fileID: 818499032}
+  optionsScreen: {fileID: 2121566860}
 --- !u!1 &818534513
 GameObject:
   m_ObjectHideFlags: 0
@@ -3010,9 +2989,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1460982802}
+      - m_Target: {fileID: 1149951213}
         m_TargetAssemblyTypeName: View, Assembly-CSharp
-        m_MethodName: Show
+        m_MethodName: OnPressLoginButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3991,10 +3970,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1312642458}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1149951213}
+        m_TargetAssemblyTypeName: View, Assembly-CSharp
+        m_MethodName: OnPressCloseOptionsButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4002,18 +3981,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 2121566860}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1022733181
 MonoBehaviour:
@@ -4543,12 +4510,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1149951212}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc4e8c046b3c9584aa96a9fada23d811, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d99be944fae13a47b3076ea7a963f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loginUI: {fileID: 1460982800}
-  registerUI: {fileID: 818499032}
-  menuUI: {fileID: 1312642458}
+  upper: {fileID: 2139804212}
+  center: {fileID: 1403497068}
+  lower: {fileID: 1249084430}
+  loginScreen: {fileID: 1460982800}
+  registerScreen: {fileID: 818499032}
+  optionsScreen: {fileID: 2121566860}
 --- !u!4 &1149951214
 Transform:
   m_ObjectHideFlags: 0
@@ -4557,11 +4527,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1149951212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 457.02164, y: 304.2046, z: -186.11574}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 1912455940}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1159524854
 GameObject:
@@ -5011,11 +4981,11 @@ RectTransform:
   m_Father: {fileID: 818499033}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 22}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 70}
   m_SizeDelta: {x: 400, y: 80}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1290814189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5933,6 +5903,9 @@ MonoBehaviour:
   upper: {fileID: 2139804212}
   center: {fileID: 1403497068}
   lower: {fileID: 1249084430}
+  loginScreen: {fileID: 1460982800}
+  registerScreen: {fileID: 818499032}
+  optionsScreen: {fileID: 2121566860}
 --- !u!114 &1460982803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6446,7 +6419,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -17564,21 +17537,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 818499036}
+      - m_Target: {fileID: 1149951213}
         m_TargetAssemblyTypeName: View, Assembly-CSharp
-        m_MethodName: Show
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1460982802}
-        m_TargetAssemblyTypeName: View, Assembly-CSharp
-        m_MethodName: HideLogin
+        m_MethodName: OnPressRegisterButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17799,6 +17760,7 @@ RectTransform:
   - {fileID: 2139804212}
   - {fileID: 1403497068}
   - {fileID: 1249084430}
+  - {fileID: 1149951214}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18353,7 +18315,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -18561,13 +18523,14 @@ GameObject:
   - component: {fileID: 2121566861}
   - component: {fileID: 2121566863}
   - component: {fileID: 2121566862}
+  - component: {fileID: 2121566864}
   m_Layer: 5
   m_Name: OptionsScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2121566861
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18590,7 +18553,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -786}
   m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2121566862
@@ -18631,6 +18594,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121566860}
   m_CullTransparentMesh: 1
+--- !u!114 &2121566864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121566860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d99be944fae13a47b3076ea7a963f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upper: {fileID: 2139804212}
+  center: {fileID: 1403497068}
+  lower: {fileID: 1249084430}
+  loginScreen: {fileID: 1460982800}
+  registerScreen: {fileID: 818499032}
+  optionsScreen: {fileID: 2121566860}
 --- !u!1 &2139804211
 GameObject:
   m_ObjectHideFlags: 0
@@ -18663,7 +18644,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -41, y: 803}
+  m_AnchoredPosition: {x: 0, y: 803}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2141402487

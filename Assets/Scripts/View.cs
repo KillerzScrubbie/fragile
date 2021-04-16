@@ -5,22 +5,87 @@ using DG.Tweening;
 
 public class View : MonoBehaviour
 {
-    public Transform upper;
-    public Transform center;
-    public Transform lower;
+    public static View instance;
 
-    public void Show()
+    [SerializeField] private Transform upper;
+    [SerializeField] private Transform center;
+    [SerializeField] private Transform lower;
+
+    [SerializeField] private GameObject loginScreen;
+    [SerializeField] private GameObject registerScreen;
+    [SerializeField] private GameObject optionsScreen;
+
+    private void Awake()
     {
-        transform.DOMoveY(center.position.y, 1);
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != null)
+        {
+            Debug.Log("Instance already exists, destroying object");
+            Destroy(this);
+        }
     }
 
-    public void Hide()
+    public void Show(GameObject gameObject)
     {
-        transform.DOMoveY(upper.position.y, 1);
+        gameObject.transform.DOMoveY(center.position.y, 1);
     }
 
-    public void HideLogin()
+    public void Hide(GameObject gameObject)
     {
-        transform.DOMoveY(lower.position.y, 1);
+        gameObject.transform.DOMoveY(upper.position.y, 1);
+    }
+
+    public void HideUnder(GameObject gameObject)
+    {
+        gameObject.transform.DOMoveY(lower.position.y, 1);
+    }
+
+    public void OnPressOptionsButton()
+    {
+        Show(optionsScreen);
+        Hide(registerScreen);
+        Hide(loginScreen);
+    }
+
+    public void OnPressLoginButton()
+    {
+        Show(loginScreen);
+        Hide(registerScreen);
+        HideUnder(optionsScreen);
+    }
+
+    public void OnPressCloseOptionsButton()
+    {
+        HideUnder(optionsScreen);
+    }
+
+    public void OnPressCloseLoginButton()
+    {
+        Hide(loginScreen);
+    }
+
+    public void OnPressRegisterButton()
+    {
+        HideUnder(loginScreen);
+        Show(registerScreen);
+    }
+
+    public void OnPressCloseRegisterButton()
+    {
+        Hide(registerScreen);
+        Show(loginScreen);
+    }
+
+    public void OnSuccessfulLogin()
+    {
+        OnPressCloseLoginButton();
+    }
+
+    public void OnSuccessfulRegister()
+    {
+        OnPressCloseRegisterButton();
     }
 }
