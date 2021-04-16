@@ -27,7 +27,7 @@ public class View : MonoBehaviour
             Destroy(this);
         }
     }
-
+ 
     public void Show(GameObject gameObject)
     {
         gameObject.transform.DOMoveY(center.position.y, 1);
