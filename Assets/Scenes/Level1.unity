@@ -1077,7 +1077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5259e1ca582f7684da0122c02a0ede88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: {fileID: 102900000, guid: 5b28ad85c4afa3f49b84213139cf7786, type: 3}
+  nextSceneBuildIndex: 2
   trigger: {fileID: 521445221}
 --- !u!1001 &542642363
 PrefabInstance:
