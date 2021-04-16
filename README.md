@@ -41,7 +41,7 @@ Focus mainly on finding assets, sounds, and doing simple coding like animations 
 # Dev Logs
 
 Log #5
-- Created level 2 will increase the player skills to use dash ability
+- Created level 2 with an increase in difficulty to improve the player skills to use dash ability
 - Added a new zoom-out button to see the surroundings
 - Created a basic scene linking
 - Added more sound effects
