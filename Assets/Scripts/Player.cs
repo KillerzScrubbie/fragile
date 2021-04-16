@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
 
     [Header("Wall Jump")] // Wall Sliding and wall jumping
     [SerializeField] private Transform frontCheck = null;
+    [SerializeField] private Transform headCheck = null;
     [SerializeField] private float wallSlidingSpeed = 2f;
     [SerializeField] private float checkRadius = 0.1f;
     [SerializeField] private float xWallForce;
@@ -100,7 +101,7 @@ public class Player : MonoBehaviour
     {
         if (!disabledMovement)
         {
-            Jump();
+            
             Flip(movementInput);
             Move();
         }
@@ -115,7 +116,11 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         // Method to mess with the Physics engine, avoid doing Physics in Update method.
-
+        if(!disabledMovement)
+        {
+            Jump();
+        }
+        
         GroundCheck();
         FreeCam();
 
@@ -141,22 +146,7 @@ public class Player : MonoBehaviour
     private void OnPressFreeCam()
     {
         freeCamPressed = true;
-        //StartCoroutine(StopFreeCam());
     }
-
-    /*private IEnumerator StopFreeCam()
-    {
-        if (freeCamPressed)
-        {
-            yield return new WaitForSeconds(freeCamTimer);
-            
-        } else
-        {
-            yield return new WaitForSeconds(0.001f);
-        }
-        
-        freeCamPressed = false;
-    }*/
 
     private void OnReleaseFreeCam()
     {
@@ -165,7 +155,7 @@ public class Player : MonoBehaviour
 
     private void GroundCheck()
     {
-        isGrounded = /*(Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down, checkRadius, groundLayer).collider != null); */Physics2D.OverlapCircle(feet.position, checkRadius, groundLayer);
+        isGrounded = /*(Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down, checkRadius, groundLayer).collider != null);*/ Physics2D.OverlapCircle(feet.position, checkRadius, groundLayer);
 
         if (isGrounded)
         {
@@ -242,26 +232,26 @@ public class Player : MonoBehaviour
     {
         if (isJumping) // If the player is holding jump button
         {
-            if (HeadCheck())
+            if (wallJumpUnlocked) {
+                WallJumpCheck();
+                if (wallJumping)
+                {       
+                    rb.velocity = new Vector2(xWallForce * -facingDirection, yWallForce);      
+                    Flip(rb.velocity.x);          
+                    OnDisableMovement(timeDisabledAfterWallJump);
+                    return;
+                } 
+            }
+
+            if (HeadCheck() && !anim.GetBool("WallCling"))
             {
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, float.MinValue, 0));
                 isJumping = false;
             }
 
-            if (wallJumpUnlocked) {
-                WallJumpCheck();
-                if (wallJumping)
-                {
-                    rb.velocity = new Vector2(xWallForce * -facingDirection, yWallForce);
-                    Flip(rb.velocity.x);
-                    OnDisableMovement(timeDisabledAfterWallJump);
-                    return;
-                } 
-            }
-            
             if (jumpTimeCounter > 0 && !wallSliding)
             {
-                rb.velocity = Vector2.up * jumpVelocity;
+                rb.velocity = new Vector2(rb.velocity.x, Vector2.up.y * jumpVelocity);
                 jumpTimeCounter -= Time.deltaTime;
             } else
             {
@@ -296,8 +286,8 @@ public class Player : MonoBehaviour
 
     private bool HeadCheck()
     {
-        //return Physics2D.OverlapCircle(headCheck.position, checkRadius, groundLayer);
-        return Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size / 1.2f, 0f, Vector2.up, checkRadius, groundLayer).collider != null;
+        return Physics2D.OverlapCircle(headCheck.position, checkRadius, groundLayer);
+        //return Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size / 1.2f, 0f, Vector2.up, checkRadius, groundLayer).collider != null;
     }
 
     private void DisableWallJump()
