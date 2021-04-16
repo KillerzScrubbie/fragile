@@ -165,7 +165,7 @@ public class Player : MonoBehaviour
 
     private void GroundCheck()
     {
-        isGrounded = (Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down, checkRadius, groundLayer).collider != null); //Physics2D.OverlapCircle(feet.position, checkRadius, groundLayer);
+        isGrounded = /*(Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down, checkRadius, groundLayer).collider != null); */Physics2D.OverlapCircle(feet.position, checkRadius, groundLayer);
 
         if (isGrounded)
         {
