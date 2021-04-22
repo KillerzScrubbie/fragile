@@ -29,8 +29,8 @@ Focus mainly on finding assets, sounds, and doing simple coding like animations 
 - *NEW => Created 2 demo levels*
 
 **What we will do within this term**
-- Reimplement the joystick for movement, if possible.
-- Implement climbing ladders, and bouncing off from a projectile.
+- ~~Reimplement the joystick for movement, if possible.~~ Cut due to no need for vertical movement except jumping
+- Implement bouncing off from a projectile.
 - Add Pause button and return to main menu while in game.
 - Add some transitions between scenes
 - Add more particle effects for when the player die
