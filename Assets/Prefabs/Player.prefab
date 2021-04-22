@@ -196,6 +196,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: dcf82702bae4a924ca5e8cf25ea55a87, type: 3}
   jumpSound: {fileID: 773397247}
   deathSoundPlayer: {fileID: 8313368243788223379, guid: 34803da4e1d7c6648bc5ec60e5bea44b, type: 3}
+  dashSound: {fileID: 4947180739811145336}
   dustEffect: {fileID: 9194285573750655406, guid: 562f69fdbf6c98446a72b36d3fd50f45, type: 3}
   dustJumpEffect: {fileID: 9194285573750655406, guid: 0d208637d715c464688032eabbf048b9, type: 3}
   feet: {fileID: 1920100973140553583}
@@ -210,7 +211,7 @@ MonoBehaviour:
   timeDisabledAfterWallJump: 0.17
   dashForce: 13
   timeDisabledAfterDash: 0.25
-  dashCooldown: 0.5
+  dashCooldown: 0.4
   dashUnlocked: 0
   doubleJumpUnlocked: 0
   wallJumpUnlocked: 0
@@ -543,10 +544,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d58fdee5dfa64db41afc370486007cbe, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.15
   m_Pitch: 0.5
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

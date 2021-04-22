@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip[] footstepClip;
     [SerializeField] private AudioSource jumpSound;
     [SerializeField] private GameObject deathSoundPlayer;
+    [SerializeField] private AudioSource dashSound;
 
     [Header("Particles")] // Particles effect
     [SerializeField] private ParticleSystem dustEffect = null;
@@ -352,6 +353,7 @@ public class Player : MonoBehaviour
             rb.gravityScale = 0;
             dashing = true;
             canDash = false;
+            PlayDashSound();
             anim.SetBool("Dashing", dashing);
             OnDisableMovement(timeDisabledAfterDash);
             StartCoroutine(WaitForDashCooldown(dashCooldown));
@@ -407,6 +409,12 @@ public class Player : MonoBehaviour
     {
         footstep.clip = footstepClip[Random.Range(0, footstepClip.Length)];
         footstep.Play();
+    }
+
+    private void PlayDashSound()
+    {
+        dashSound.time = 0.25f;
+        dashSound.Play();
     }
 
     private void PlayJumpSound()
