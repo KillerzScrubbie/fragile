@@ -1,8 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Cinemachine;
 
 public class Player : MonoBehaviour
@@ -406,7 +403,7 @@ public class Player : MonoBehaviour
 
     private void Footstep()
     {
-        footstep.clip = footstepClip[UnityEngine.Random.Range(0, footstepClip.Length)];
+        footstep.clip = footstepClip[Random.Range(0, footstepClip.Length)];
         footstep.Play();
     }
 
@@ -423,4 +420,5 @@ public class Player : MonoBehaviour
 
     public bool GetIsDead() => isDead;
 
+    public PlayerInput GetPlayerInput() => playerInput;
 }
