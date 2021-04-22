@@ -35992,7 +35992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6564688125001885201, guid: 54a347f8a9c65e044bf26ff111985138, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 35.288918
+      value: 35.208916
       objectReference: {fileID: 0}
     - target: {fileID: 6564688125001885202, guid: 54a347f8a9c65e044bf26ff111985138, type: 3}
       propertyPath: m_Follow
@@ -36008,7 +36008,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6564688125222817891, guid: 54a347f8a9c65e044bf26ff111985138, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 35.288918
+      value: 35.208916
       objectReference: {fileID: 0}
     - target: {fileID: 6564688125222817891, guid: 54a347f8a9c65e044bf26ff111985138, type: 3}
       propertyPath: m_LocalRotation.w
@@ -37354,7 +37354,7 @@ PrefabInstance:
     - target: {fileID: 255022578, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 2e6034936dc15104181e743c4607b849, type: 3}
+      objectReference: {fileID: 8300000, guid: 3267cd8e9967090459f4e38d5c2ca10f, type: 3}
     - target: {fileID: 162314654839063787, guid: 92567d6a2e755bb4e9287fa671c4a887, type: 3}
       propertyPath: m_Name
       value: Player
