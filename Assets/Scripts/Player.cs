@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     [SerializeField] private ParticleSystem dustJumpEffect = null;
     [SerializeField] private Transform feet = null;
     [SerializeField] private ParticleSystem deathEffect = null;
+    [SerializeField] private ParticleSystem dashEffect = null;
 
     [Header("Wall Jump")] // Wall Sliding and wall jumping
     [SerializeField] private Transform frontCheck = null;
@@ -354,6 +355,7 @@ public class Player : MonoBehaviour
             dashing = true;
             canDash = false;
             PlayDashSound();
+            Instantiate(dashEffect, transform.position, Quaternion.identity);
             anim.SetBool("Dashing", dashing);
             OnDisableMovement(timeDisabledAfterDash);
             StartCoroutine(WaitForDashCooldown(dashCooldown));

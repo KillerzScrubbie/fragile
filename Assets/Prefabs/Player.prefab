@@ -201,6 +201,7 @@ MonoBehaviour:
   dustJumpEffect: {fileID: 9194285573750655406, guid: 0d208637d715c464688032eabbf048b9, type: 3}
   feet: {fileID: 1920100973140553583}
   deathEffect: {fileID: 2828128725295162601, guid: 9128e595b5eee664bb61f51964e9aa93, type: 3}
+  dashEffect: {fileID: 8022454862207024287, guid: 825d243a48b78674eb768343bf11a1e3, type: 3}
   frontCheck: {fileID: 5240120567758635040}
   headCheck: {fileID: 8668461963590617769}
   wallSlidingSpeed: 1
