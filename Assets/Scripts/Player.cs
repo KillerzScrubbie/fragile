@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     [SerializeField] private ParticleSystem dustEffect = null;
     [SerializeField] private ParticleSystem dustJumpEffect = null;
     [SerializeField] private Transform feet = null;
+    [SerializeField] private ParticleSystem deathEffect = null;
 
     [Header("Wall Jump")] // Wall Sliding and wall jumping
     [SerializeField] private Transform frontCheck = null;
@@ -68,6 +69,7 @@ public class Player : MonoBehaviour
     private bool dashing = false;
     private bool canDash = true;
     private bool freeCamPressed = false;
+    private bool isDead = false;
 
     private int numCurrentJumps;
 
@@ -99,9 +101,14 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (isDead)
+        {
+            gameObject.SetActive(false);
+            Instantiate(deathEffect, transform.position, Quaternion.identity);
+        }
+
         if (!disabledMovement)
         {
-            
             Flip(movementInput);
             Move();
         }
@@ -408,4 +415,12 @@ public class Player : MonoBehaviour
         jumpSound.time = 0.08f;
         jumpSound.Play();
     }
+
+    public void SetIsDead(bool state)
+    {
+        isDead = state;
+    }
+
+    public bool GetIsDead() => isDead;
+
 }

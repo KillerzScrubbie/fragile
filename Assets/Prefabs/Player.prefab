@@ -180,7 +180,6 @@ MonoBehaviour:
   anim: {fileID: 162314654839063786}
   GRAVITY_SCALE: 2
   maxTerminalVelocity: 7.5
-  boxCollider: {fileID: 5591849869552603573}
   footstep: {fileID: 255022578}
   footstepClip:
   - {fileID: 8300000, guid: 924cfea2b52b4c844bc9f0f648a520f2, type: 3}
@@ -197,6 +196,7 @@ MonoBehaviour:
   dustEffect: {fileID: 9194285573750655406, guid: 562f69fdbf6c98446a72b36d3fd50f45, type: 3}
   dustJumpEffect: {fileID: 9194285573750655406, guid: 0d208637d715c464688032eabbf048b9, type: 3}
   feet: {fileID: 1920100973140553583}
+  deathEffect: {fileID: 2828128725295162601, guid: 9128e595b5eee664bb61f51964e9aa93, type: 3}
   frontCheck: {fileID: 5240120567758635040}
   headCheck: {fileID: 8668461963590617769}
   wallSlidingSpeed: 1

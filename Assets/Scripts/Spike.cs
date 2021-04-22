@@ -8,8 +8,13 @@ public class Spike : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            LevelChanger levelChanger = GameObject.FindGameObjectWithTag("LevelChanger").GetComponent<LevelChanger>();
-            levelChanger.RestartLevel();
+            Player player = collision.gameObject.GetComponent<Player>();
+            if (!player.GetIsDead())
+            {
+                player.SetIsDead(true);
+                LevelChanger levelChanger = GameObject.FindGameObjectWithTag("LevelChanger").GetComponent<LevelChanger>();
+                levelChanger.RestartLevel();
+            }
         }
     }
 }
