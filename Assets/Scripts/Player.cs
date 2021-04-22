@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioSource footstep;
     [SerializeField] private AudioClip[] footstepClip;
     [SerializeField] private AudioSource jumpSound;
+    [SerializeField] private GameObject deathSoundPlayer;
 
     [Header("Particles")] // Particles effect
     [SerializeField] private ParticleSystem dustEffect = null;
@@ -99,9 +100,10 @@ public class Player : MonoBehaviour
     private void Update()
     {
         if (isDead)
-        {
+        {   
             gameObject.SetActive(false);
             Instantiate(deathEffect, transform.position, Quaternion.identity);
+            Instantiate(deathSoundPlayer, transform.position, Quaternion.identity);
         }
 
         if (!disabledMovement)
