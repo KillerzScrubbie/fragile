@@ -28,15 +28,15 @@ Focus mainly on finding assets, sounds, and doing simple coding like animations 
 - UI Cleanup
 - Created 2 demo levels
 - *NEW => Added Transitions between scenes*
+- *NEW => Pause function and Returning to menu at any point*
+- *NEW => Added a cutscene*
 
 **What we will do within this term**
 - ~~Reimplement the joystick for movement, if possible.~~ Cut due complexity in rewriting the code.
 - ~~Implement bouncing off from a projectile.~~ Cut due to complexity in rewriting the whole controllers to use the analog stick.
-- Add Pause button and return to main menu while in game.
 - Add time-based hazards like flood.
 - Create more levels for each abilities
 - Create a tutorial
-- Create cutscenes
 
 # Dev Logs
 
@@ -44,6 +44,8 @@ Log #6 - 22/4/2021
 - Added scene transitions
 - Added transitions when the player died
 - Added particle effects for when the player die
+- Added Pause button and return to main menu while in game.
+- Added a cutscene
 
 Log #5 - 16/4/2021
 - Created level 2 with an increase in difficulty to improve the player skills to use dash ability
