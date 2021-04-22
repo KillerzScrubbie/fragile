@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Animator anim = null;
     [SerializeField] private float GRAVITY_SCALE = 1.5f;
     [SerializeField] private float maxTerminalVelocity = 4f;
-    [SerializeField] private BoxCollider2D boxCollider = null;
+    // [SerializeField] private BoxCollider2D boxCollider = null;
 
     [Header("Sounds")]
     [SerializeField] private AudioSource footstep;
