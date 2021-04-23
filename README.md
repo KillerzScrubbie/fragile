@@ -7,7 +7,14 @@ A platformer game created in Unity.
 Focus mainly on coding on advanced topics like Mobile controls, New Input Systems, game logic. I've contributed most of the coding and doing the gameplay to the point that it feels good. Right now we've encountered a mountain of bugs.
 
 **Warissara Wadsaengsri**
-Focus mainly on finding assets, sounds, and doing simple coding like animations and some simple game logic. I've contributed the animations and animation coding plus some simple game logic like jumping and double jumping.
+Focus mainly on finding assets, musics, sounds, and doing simple coding like animations and some simple game logic. I've contributed the animations and animation coding plus some simple game logic like jumping and double jumping. I've also done most of the UIs in the game to be mobile-friendly.
+
+**Project Summary**
+- About 100+ hours spent on this project
+- The best feature about this project is the movement mechanics, it feels smooth and easy to control on mobile.
+- If we have more time, we will add more abilities, levels, timing system, and a progression system.
+- Reimplement an analog stick movement for bash ability inspired by Ori series.
+- Bug fixes will be done in the future to make the game more robust.
 
 **What we've done**
 - Mobile controls (Prototype)
