@@ -1,5 +1,5 @@
 # frAgile
-A platformer game created in Unity.
+A platformer game created in Unity. Adapted and improved from GameDev.tv's 2D Unity course lectures.
 
 [**Alpha Build Download here (Android only!)**](https://drive.google.com/file/d/18CDpixyDLu_hu3gzmogiqANV6D6OnPYw/view?usp=sharing)
 
